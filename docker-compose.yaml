@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  redis:
+    image: redis
+    expose:
+      - 6379
+    ports:
+      - 6379:6379
+
+  app:
+    build: .
+    ports:
+      - 3232:3232
+    command: ["app"]
+    depends_on:
+      - redis
