@@ -37,7 +37,7 @@ func Publish() (int64, error) {
 // Drain trim Redis list to 0
 func Drain() (string, error) {
 	client := makeClient()
-	cmd := client.LTrim("default", 0, 1)
+	cmd := client.LTrim("default", 1, 0)
 
 	if cmd.Err() != nil {
 		return "error", cmd.Err()

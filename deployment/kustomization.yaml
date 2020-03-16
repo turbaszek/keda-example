@@ -1,6 +1,0 @@
-secretGenerator:
-- name: mysql-pass
-  literals:
-  - password=keda-talk
-resources:
-- mysql-deployment.yaml
