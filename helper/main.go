@@ -54,6 +54,40 @@ func main() {
 					},
 				},
 			},
+			{
+				Name:  "mysql",
+				Usage: "mysql methods",
+				Subcommands: []*cli.Command{
+					{
+						Name:  "insert",
+						Usage: "Insert some values to database",
+						Action: func(c *cli.Context) error {
+							err := Insert()
+							if err != nil {
+								fmt.Println("Failed to insert values")
+								log.Fatal(err)
+							} else {
+								fmt.Println("Records inserted")
+							}
+							return nil
+						},
+					},
+					{
+						Name:  "delete",
+						Usage: "Delete all records from database",
+						Action: func(c *cli.Context) error {
+							err := Delete()
+							if err != nil {
+								fmt.Println("Failed to delete records")
+								log.Fatal(err)
+							} else {
+								fmt.Println("Records deleted")
+							}
+							return nil
+						},
+					},
+				},
+			},
 		},
 	}
 

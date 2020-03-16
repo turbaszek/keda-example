@@ -5,5 +5,4 @@ repos:
     rev: master
     hooks:
       - id: go-fmt
-      - id: go-vet
       - id: go-lint

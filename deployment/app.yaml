@@ -43,6 +43,8 @@ spec:
           env:
             - name: REDIS_ADDRESS
               value: "redis:6379"
+            - name: MYSQL_PASSWORD
+              value: "keda-talk"
           resources:
             limits:
               cpu: "0.1"
