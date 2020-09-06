@@ -6,3 +6,4 @@ repos:
     hooks:
       - id: go-fmt
       - id: go-lint
+        exclude: ^helper/go

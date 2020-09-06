@@ -1,13 +1,10 @@
-FROM golang:1.13
+FROM golang:1.15
 
 WORKDIR /go/src/app
-COPY helper .
+COPY helper/ .
 
-RUN go get \
-    github.com/go-redis/redis \
-    github.com/urfave/cli \
-    github.com/go-sql-driver/mysql
+RUN go get -v ./...
 
-RUN go install
+RUN go install -v .
 
-ENTRYPOINT ["app"]
+ENTRYPOINT ["/go/bin/keda-talk"]

@@ -18,7 +18,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: dummy
-          image: dummy
+          image: local/dummy
           imagePullPolicy: Never
           lifecycle:
             preStop:

@@ -1,34 +1,34 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: server
+  name: api
   labels:
-    app: server
+    app: api
 spec:
   ports:
     - port: 3232
   selector:
-    app: server
+    app: api
     tier: frontend
   type: LoadBalancer
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: server
+  name: api
   labels:
-    app: server
+    app: api
 spec:
   selector:
     matchLabels:
-      app: server
+      app: api
       tier: frontend
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: server
+        app: api
         tier: frontend
     spec:
       containers:
@@ -36,10 +36,10 @@ spec:
           image: local/app
           imagePullPolicy: Never
           args:
-            - app
+            - api
           ports:
             - containerPort: 3232
-              name: server
+              name: api
           env:
             - name: REDIS_ADDRESS
               value: "redis:6379"

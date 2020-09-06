@@ -9,9 +9,9 @@ import (
 
 func main() {
 	app := &cli.App{
-		Name:  "keda-talk",
+		Name:  "app",
 		Usage: "Simple app for a keda related talk",
-		Commands: []*cli.Command{
+		Commands: []cli.Command{
 			{
 				Name:  "app",
 				Usage: "Runs simple http server on 3232",
@@ -21,9 +21,17 @@ func main() {
 				},
 			},
 			{
+				Name:  "api",
+				Usage: "Runs simple metric API server on 3232",
+				Action: func(c *cli.Context) error {
+					StartAPI()
+					return nil
+				},
+			},
+			{
 				Name:  "redis",
 				Usage: "redis methods",
-				Subcommands: []*cli.Command{
+				Subcommands: []cli.Command{
 					{
 						Name:  "publish",
 						Usage: "Publishes messages to Redis list",
@@ -57,7 +65,7 @@ func main() {
 			{
 				Name:  "mysql",
 				Usage: "mysql methods",
-				Subcommands: []*cli.Command{
+				Subcommands: []cli.Command{
 					{
 						Name:  "insert",
 						Usage: "Insert some values to database",
