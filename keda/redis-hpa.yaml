@@ -1,4 +1,4 @@
-apiVersion: keda.k8s.io/v1alpha1
+apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: redis-scaledobject
@@ -10,10 +10,10 @@ spec:
   pollingInterval: 3  # Optional. Default: 30 seconds
   cooldownPeriod:  5 # Optional. Default: 300 seconds
   scaleTargetRef:
-    deploymentName: dummy
+    name: dummy
   triggers:
     - type: redis
       metadata:
-        address: REDIS_ADDRESS
+        addressFromEnv: REDIS_ADDRESS
         listName: default
         listLength: "10"
