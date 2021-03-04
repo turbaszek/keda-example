@@ -17,3 +17,4 @@ spec:
         targetValue: "1"
         apiURL: "http://api:3232/api/v1"
         metricName: "luck"
+        

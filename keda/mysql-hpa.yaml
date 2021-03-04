@@ -21,3 +21,4 @@ spec:
         port: "3306"
         queryValue: "5"
         query: "SELECT CEIL(COUNT(*) / 10) FROM test WHERE state='QUEUED'"
+        
