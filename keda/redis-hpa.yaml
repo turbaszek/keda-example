@@ -17,4 +17,4 @@ spec:
         addressFromEnv: REDIS_ADDRESS
         listName: default
         listLength: "10"
-        
+```
