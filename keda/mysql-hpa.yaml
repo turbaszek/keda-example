@@ -1,4 +1,4 @@
-apiVersion: keda.k8s.io/v1alpha1
+apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: mysql-scaledobject
@@ -10,14 +10,15 @@ spec:
   pollingInterval: 3  # Optional. Default: 30 seconds
   cooldownPeriod:  5 # Optional. Default: 300 seconds
   scaleTargetRef:
-    deploymentName: dummy
+    name: dummy
   triggers:
     - type: mysql
       metadata:
         username: "root"
-        password: MYSQL_PASSWORD
+        passwordFromEnv: MYSQL_PASSWORD
         host: "mysql.default.svc.cluster.local"
         dbName: "mysql"
         port: "3306"
         queryValue: "5"
         query: "SELECT CEIL(COUNT(*) / 10) FROM test WHERE state='QUEUED'"
+---

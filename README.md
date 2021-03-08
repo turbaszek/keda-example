@@ -13,7 +13,7 @@ The deployment consists of 4 components:
 - Dummy pod that will be scaled up and down
 - App service that provides some helper methods
 ```sh
-kubectl -f apply deployment/
+kubectl apply -f deployment/
 ```
 
 ## Install KEDA
@@ -31,7 +31,7 @@ To scale the dummy deployment using
 [Redis scaler](https://keda.sh/scalers/redis-lists/) first we have to
 deploy the `ScaledObjects`:
 ```sh
-kubectl -f apply keda/redis-hpa.yaml
+kubectl apply -f keda/redis-hpa.yaml
 ```
 this should result in creation of a new `ScaledObjects` and new HPA
 ```sh
@@ -58,7 +58,7 @@ To scale the dummy deployment using
 [MySQL scaler](https://keda.sh/scalers/mysql/) first we have to
 deploy the `ScaledObjects`:
 ```sh
-kubectl -f apply keda/mysql-hpa.yaml
+kubectl apply -f keda/mysql-hpa.yaml
 ```
 this should result again in creation of `ScaleObject` and an HPA:
 ```sh
@@ -74,9 +74,9 @@ keda-hpa-dummy   Deployment/dummy   <unknown>/10 (avg)   1         4         0  
 To scale up we have to insert some values to MySQL database. 
 To do this we can use the helper app:
 ```shell script
-kubectl exec -it $(k get pods | grep "server" | cut -f 1 -d " ") app mysql insert
+kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk mysql insert
 ```
 and to scale down:
 ```shell script
-kubectl exec -it $(k get pods | grep "server" | cut -f 1 -d " ") app mysql delete
+kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk mysql delete
 ```
