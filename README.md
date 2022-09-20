@@ -46,11 +46,11 @@ keda-hpa-dummy   Deployment/dummy   <unknown>/10 (avg)   1         4         0  
 
 To scale up we have to populate the Redis queue. To do this we can use the helper app:
 ```shell script
-kubectl exec -it $(k get pods | grep "server" | cut -f 1 -d " ") app redis publish
+kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk redis publish
 ```
 and to scale down:
 ```shell script
-kubectl exec -it $(k get pods | grep "server" | cut -f 1 -d " ") app redis drain
+kubectl exec $(kubectl get pods | grep "server" | cut -f 1 -d " ") -- keda-talk redis drain
 ```
 
 ## MySQL example
