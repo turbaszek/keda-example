@@ -19,6 +19,9 @@ kubectl apply -f deployment/
 ## Install KEDA
 Follow the official KEDA guide https://keda.sh/deploy/
 
+## Install kubernetes-dashboard(if not installed already)
+
+Follow the official kubernetes dashboard guide  https://artifacthub.io/packages/helm/k8s-dashboard/kubernetes-dashboard
 
 ## Observe
 To observe how everything works you can watch two things:
